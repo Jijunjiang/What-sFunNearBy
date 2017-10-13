@@ -32,13 +32,15 @@ public class TicketMasterAPI implements ExternalAPI{
 		term = urlEncodeHelper(term);
 		String query = String.format("apikey=%s&latlong=%s&keyword=%s", API_KEY, latlong, term);
 		try {
+			// allow us perform basic HTTP requests without other library
 			HttpURLConnection connection = (HttpURLConnection) new URL(url + "?" + query).openConnection();
+			// set get http method by default
 			connection.setRequestMethod("GET");
- 
+			// get the status code from an HTTP response message
 			int responseCode = connection.getResponseCode();
 			System.out.println("\nSending 'GET' request to URL : " + url + "?" + query);
 			System.out.println("Response Code : " + responseCode);
- 
+			// create a bufferedreader to help read response data from a character input stream
 			BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 			String inputLine;
 			StringBuffer response = new StringBuffer();

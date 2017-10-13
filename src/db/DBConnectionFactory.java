@@ -1,5 +1,6 @@
 package db;
 
+import db.mongodb.MongoDBConnection;
 import db.mysql.MySQLConnection;
 
 public class DBConnectionFactory {
@@ -12,6 +13,8 @@ public class DBConnectionFactory {
 			case "mysql":
 				return MySQLConnection.getInstance();
 			// You may try other dbs and add them here.
+			case "mongodb":
+				return MongoDBConnection.getInstance();
 			default:
 				throw new IllegalArgumentException("Invalid db " + db);
 			}
